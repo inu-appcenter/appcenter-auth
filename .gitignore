@@ -7,6 +7,6 @@ important
 *.log
 image
 upload
-config
+/routes/config
 dev-account-a5b76-firebase-adminsdk-7zfr0-8f998b9e6f.json
 auth-231505-5e7b978a19f9.json

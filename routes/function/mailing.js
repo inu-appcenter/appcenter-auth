@@ -1,3 +1,5 @@
+const config = require('../config/config')
+
 module.exports = async function(createUser,url,whatKind){
     const nodemailer = require('nodemailer')
     const smtpTransport = require('nodemailer-smtp-transport')
@@ -5,8 +7,8 @@ module.exports = async function(createUser,url,whatKind){
     let transporter = nodemailer.createTransport(smtpTransport({
         service:'gmail',
         auth: {
-            user:'inuappcenter@gmail.com',
-            pass:'inuappcenter110825'
+            user:config.mailId,
+            pass:config.mailPasswd
         }
     }))
 
@@ -15,7 +17,7 @@ module.exports = async function(createUser,url,whatKind){
         from:"Do Not reply<user@gmail.com>",
         to:createUser,
         subject:"INU APP Center 계정 인증메일입니다.",
-        text:"다음 링크를 클릭하시고 인증을 완료해주세요 http://117.16.231.66:7000/verified/"+url
+        text:"다음 링크를 클릭하시고 인증을 완료해주세요 "+config.verifyPath+url
     }
 
     let passwordMailOptions = {
