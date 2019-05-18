@@ -11,10 +11,18 @@ router.post('/',async(req,res)=>{
     name : req.body.name,
     type : 1
   }
-  if(accountQuery(query,'checkId')){
-    await accountQuery(query,'singUp')
+  if(await accountQuery(query,'checkId')){
+    if(await accountQuery(query,'singUp')){
+      res.status(200).json({answer:"success"})
+    }
+    else{
+      res.status(400).json({answer:"fail"})
+    }
   }
-  res.send(true)
+  else{
+    res.status(400).json({answer:"Id"})
+  }
+  //res.status(200).send(true)
 })
 
 
