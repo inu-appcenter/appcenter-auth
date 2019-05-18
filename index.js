@@ -1,14 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const functions = require('firebase-functions')
-
-const admin = require("firebase-admin")
-const serviceAccount = require("./dev-account-a5b76-firebase-adminsdk-7zfr0-8f998b9e6f.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://dev-account-a5b76.firebaseio.com"
-});
 
 const index = require('./routes/index')
 const signIn = require('./routes/signIn')
@@ -32,7 +23,7 @@ app.use(function(req, res, next) {
   next(err)
 })
 
-app.get('/',(req,res)=>{res.send("hello world")})
+app.get('/',(req,res)=> res.send("hello world"))
 
 // development error handler
 // will print stacktrace

@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const loginQuery = require('./query/account')
 
+router.get('/',(req,res)=>{
+  res.send(true)
+})
+
 router.post('/',async(req,res)=>{
   let query={
     id : req.body.id,
