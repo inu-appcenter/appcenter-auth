@@ -161,7 +161,9 @@ module.exports = async (query,kind) => {
                     docId = doc.id
                 })
                 if(docId != null || docId != "" || docId !="undefined"){
-                    let tempPasswd = await getAccountRef.doc(docId).update({Passwd : doCrypto(query.tmpPasswd)}).then(returnValue = true)
+                    let tempPasswd = await getAccountRef.doc(docId).update({Passwd : doCrypto(query.tmpPasswd)})
+                    .then(sendMail(query.id+'@inu.ac.kr',query.tmpPasswd,'passwd'))
+                    .then(returnValue = true)
                 }
             }).catch(err => {
                 console.log(err)
