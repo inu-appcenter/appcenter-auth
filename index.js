@@ -5,6 +5,7 @@ const index = require('./routes/index')
 const signIn = require('./routes/signIn')
 const signUp = require('./routes/signUp')
 const verified = require('./routes/verified')
+const changeInfo = require('./routes/change')
 
 const app = express()
 const router = express.Router()
@@ -17,6 +18,7 @@ app.use('/',index)
 app.use('/signIn',signIn)
 app.use('/signUp',signUp)
 app.use('/verified',verified)
+app.use('/changeInfo',changeInfo)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -106,6 +106,53 @@ module.exports = async (query,kind) => {
             //return returnValue
             break
 
+        case 'changeAll':
+            await getAccountRef.where('Id', '==', query.id).get()
+            .then(async snapshot => {
+                let arr = []
+                let docId
+                snapshot.forEach(doc => {
+                    arr.push(doc.data())
+                    docId = doc.id
+                })
+                if(!(arr.size === 0 || arr.size === "undefined")){
+                    if(query.id === arr[0].Id){
+                        if(doCrypto(query.passwd) === arr[0].Passwd){
+                            let accountUpdate = await getAccountRef.doc(docId).update({
+                                Passwd : doCrypto(query.newPasswd),
+                                Phone:query.tel,
+                                Major:query.major,
+                                Name : query.name}).then(returnValue = true)
+                        }
+                    }
+                }
+            }).catch(err => {
+                console.log('Error getting documents', err)
+            })
+            break
+        case 'changeInfo':
+                await getAccountRef.where('Id', '==', query.id).get()
+                .then(async snapshot => {
+                    let arr = []
+                    let docId
+                    snapshot.forEach(doc => {
+                        arr.push(doc.data())
+                        docId = doc.id
+                    })
+                    if(!(arr.size === 0 || arr.size === "undefined")){
+                        if(query.id === arr[0].Id){
+                            if(doCrypto(query.passwd) === arr[0].Passwd){
+                                let accountUpdate = await getAccountRef.doc(docId).update({
+                                    Phone:query.tel,
+                                    Major:query.major,
+                                    Name : query.name}).then(returnValue = true)
+                            }
+                        }
+                    }
+                }).catch(err => {
+                    console.log('Error getting documents', err)
+                })
+            break
         default:
             break
     }
