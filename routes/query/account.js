@@ -153,6 +153,20 @@ module.exports = async (query,kind) => {
                     console.log('Error getting documents', err)
                 })
             break
+        case 'tmpPasswd':
+            await getAccountRef.where('Id','==',query.id).get()
+            .then(async snapShot => {
+                let docId
+                snapShot.forEach(doc => {
+                    docId = doc.id
+                })
+                if(docId != null || docId != "" || docId !="undefined"){
+                    let tempPasswd = await getAccountRef.doc(docId).update({Passwd : doCrypto(query.tmpPasswd)}).then(returnValue = true)
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+            break
         default:
             break
     }

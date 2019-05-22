@@ -1,4 +1,5 @@
 const express = require('express')
+const randomString = require('randomstring')
 
 const accountQuery = require('./query/account')
 
@@ -15,7 +16,6 @@ router.post('/',async (req,res)=>{
         type : 1
       }
       let answer
-      console.log(req.body.newPasswd)
       if(req.body.newPasswd == ""){
           answer = await accountQuery(query,'changeInfo')
       }
@@ -28,7 +28,20 @@ router.post('/',async (req,res)=>{
       }else{
           res.status(200).json({ans : "success"})
       }
-    
+})
+
+router.post('/tmpPasswd',async (req,res) => {
+    const newPasswd = randomString.generate(7)
+    let query = {
+        id : req.body.id,
+        tmpPasswd : newPasswd
+    }
+    if(accountQuery(query,'tmpPasswd')){
+        res.status(200).json({ans:"success"})
+    }
+    else{
+        res.status(400).json({ans:"err"})
+    }
 })
 
 module.exports = router
