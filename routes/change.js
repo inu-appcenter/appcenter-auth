@@ -34,6 +34,7 @@ router.post('/tmpPasswd',async (req,res) => {
     const newPasswd = randomString.generate(7)
     let query = {
         id : req.body.id,
+        name : req.body.name,
         tmpPasswd : newPasswd
     }
     if(accountQuery(query,'tmpPasswd')){
