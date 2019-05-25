@@ -37,7 +37,8 @@ router.post('/tmpPasswd',async (req,res) => {
         name : req.body.name,
         tmpPasswd : newPasswd
     }
-    if(accountQuery(query,'tmpPasswd')){
+    if(await accountQuery(query,'tmpPasswd')){
+        console.log("here")
         res.status(200).json({ans:"success"})
     }
     else{

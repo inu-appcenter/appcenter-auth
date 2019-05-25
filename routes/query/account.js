@@ -166,6 +166,7 @@ module.exports = async (query,kind) => {
                     .then(returnValue = true)
                 }
             }).catch(err => {
+                returnValue = false
                 console.log(err)
             })
             break
