@@ -154,10 +154,9 @@ module.exports = async (query,kind) => {
                 })
             break
         case 'tmpPasswd':
-            await getAccountRef.where('Id','==',query.id).where("Name","==",query.name).get()
-            .then(async snapShot => {
+            await getAccountRef.where('Id', '==', query.id).where('Name', '==', query.name).get().then(async snapshot => {
                 let docId
-                snapShot.forEach(doc => {
+                await snapshot.forEach(doc => {
                     docId = doc.id
                 })
                 if(docId != null || docId != "" || docId !="undefined"){

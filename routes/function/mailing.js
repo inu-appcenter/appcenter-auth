@@ -33,7 +33,7 @@ module.exports = async function(createUser,url,whatKind){
                 console.error(err)
             }
             else {
-                console.log("Message sent : "+ createUser)
+                console.log(`create Message sent : + ${createUser}`)
             }
             transporter.close()
         })
@@ -44,7 +44,7 @@ module.exports = async function(createUser,url,whatKind){
                 console.error(err)
             }
             else {
-                console.log("Message sent : "+ createUser)
+                console.log(`tmpPasswd Message sent : + ${createUser}`)
             }
             transporter.close()
         })
